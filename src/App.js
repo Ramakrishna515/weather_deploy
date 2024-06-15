@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import WeatherDisplay from './WeatherDisplay';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className={darkMode ? 'app dark-mode' : 'app'}>
+      <header>
+        <h1>Weather App</h1>
+        <button onClick={toggleTheme}>
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
+        </button>
       </header>
+      <main>
+        <WeatherDisplay />
+      </main>
     </div>
   );
-}
+};
 
 export default App;
